@@ -1,0 +1,8 @@
+{
+  "name": "freeagent-cli",
+  "description": "FreeAgent accounting CLI assistant",
+  "version": "0.1.0",
+  "author": {
+    "name": "Anjor Kanekar"
+  }
+}

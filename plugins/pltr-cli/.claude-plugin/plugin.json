@@ -1,0 +1,9 @@
+{
+  "name": "pltr-cli",
+  "description": "Palantir Foundry CLI assistant",
+  "version": "1.1.0",
+  "author": {
+    "name": "Anjor Kanekar"
+  },
+  "repository": "https://github.com/anjor/claude-skills"
+}

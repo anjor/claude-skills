@@ -1,18 +1,35 @@
 # Contributing to Claude Skills Marketplace
 
-Thank you for your interest in contributing! This guide will help you add new skills or improve existing ones.
+Thank you for your interest in contributing! This guide will help you add new plugins or improve existing ones.
 
-## Adding a New Skill
+## Adding a New Plugin
 
-### 1. Create the Skill Directory
+### 1. Create the Plugin Directory Structure
 
 ```bash
-mkdir -p plugins/your-skill-name
+mkdir -p plugins/your-plugin-name/.claude-plugin
+mkdir -p plugins/your-plugin-name/skills/your-skill-name
 ```
 
-### 2. Create SKILL.md
+### 2. Create plugin.json
 
-Every skill requires a `SKILL.md` file with YAML frontmatter:
+Every plugin requires a `.claude-plugin/plugin.json` manifest:
+
+```json
+{
+  "name": "your-plugin-name",
+  "description": "A clear description of what this plugin does",
+  "version": "1.0.0",
+  "author": {
+    "name": "Your Name"
+  },
+  "repository": "https://github.com/your-username/your-repo"
+}
+```
+
+### 3. Create SKILL.md
+
+Create `skills/your-skill-name/SKILL.md` with YAML frontmatter:
 
 ```yaml
 ---
@@ -64,31 +81,57 @@ your-cli --help
 ```
 ```
 
-### 3. Add Reference Files (Optional)
+### 4. Add Reference Files (Optional)
 
-Create `reference/` directory for detailed command documentation:
+Create `skills/your-skill-name/reference/` directory for detailed command documentation:
 
 ```bash
-mkdir plugins/your-skill-name/reference
+mkdir plugins/your-plugin-name/skills/your-skill-name/reference
 ```
 
 Each reference file should cover a logical grouping of commands (e.g., `admin-commands.md`, `query-commands.md`).
 
-### 4. Add Workflow Files (Optional)
+### 5. Add Workflow Files (Optional)
 
-Create `workflows/` directory for multi-step task patterns:
+Create `skills/your-skill-name/workflows/` directory for multi-step task patterns:
 
 ```bash
-mkdir plugins/your-skill-name/workflows
+mkdir plugins/your-plugin-name/skills/your-skill-name/workflows
 ```
 
 Workflows describe common end-to-end tasks that involve multiple commands.
 
-## Skill Design Guidelines
+### 6. Register in Marketplace
 
-### Frontmatter
+Add your plugin to the root `.claude-plugin/marketplace.json`:
+
+```json
+{
+  "plugins": [
+    {
+      "name": "your-plugin-name",
+      "source": "./plugins/your-plugin-name",
+      "description": "Your plugin description",
+      "version": "1.0.0",
+      "category": "development"
+    }
+  ]
+}
+```
+
+Categories include: `development`, `productivity`, `utilities`, etc.
+
+## Plugin Design Guidelines
+
+### plugin.json
 
 - **name**: Should match the directory name
+- **version**: Follow semantic versioning (e.g., 1.0.0)
+- **description**: Clear, concise description of capabilities
+
+### SKILL.md Frontmatter
+
+- **name**: Should match the skill directory name
 - **description**: Include:
   - What the skill helps with
   - Key capabilities
@@ -114,28 +157,33 @@ Workflows describe common end-to-end tasks that involve multiple commands.
 - Include decision points and alternatives
 - Show how commands chain together
 
-## Testing Your Skill
+## Testing Your Plugin
 
-1. Install the skill locally:
+1. Add the local marketplace:
    ```bash
-   ./scripts/install.sh install your-skill-name
+   /plugin marketplace add ./
    ```
 
-2. Start Claude Code and test with trigger phrases:
+2. Install your plugin:
+   ```bash
+   /plugin install your-plugin-name@anjor-claude-skills
+   ```
+
+3. Test with trigger phrases:
    ```
    help me with your-skill-name
    ```
 
-3. Verify Claude loads the appropriate reference/workflow files
+4. Verify Claude loads the appropriate reference/workflow files
 
 ## Submitting Changes
 
 1. Fork this repository
-2. Create a feature branch: `git checkout -b add-skill-name`
-3. Add your skill following the guidelines above
+2. Create a feature branch: `git checkout -b add-plugin-name`
+3. Add your plugin following the guidelines above
 4. Test locally
 5. Submit a pull request with:
-   - Description of the skill
+   - Description of the plugin
    - Example usage
    - Any special requirements
 
