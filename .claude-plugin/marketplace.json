@@ -1,0 +1,26 @@
+{
+  "name": "anjor-claude-skills",
+  "description": "Claude Code skills for CLI tools including Palantir Foundry",
+  "owner": {
+    "name": "Anjor Kanekar"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "pltr-cli",
+      "source": "./plugins/pltr-cli",
+      "description": "Palantir Foundry CLI assistant - helps with datasets, SQL, ontology, orchestration, and more",
+      "version": "1.1.0",
+      "category": "development"
+    },
+    {
+      "name": "freeagent-cli",
+      "source": "./plugins/freeagent-cli",
+      "description": "FreeAgent accounting CLI assistant (WIP)",
+      "version": "0.1.0",
+      "category": "productivity"
+    }
+  ]
+}

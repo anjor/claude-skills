@@ -1,59 +1,56 @@
 # Claude Skills Marketplace
 
-A personal collection of Claude Code skills that can be installed and used with [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
+A personal collection of Claude Code plugins that can be installed and used with [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
-## Available Skills
+## Available Plugins
 
-| Skill | Description |
-|-------|-------------|
+| Plugin | Description |
+|--------|-------------|
 | [pltr-cli](plugins/pltr-cli/) | Work with Palantir Foundry using the pltr CLI - query datasets, manage orchestration builds, work with ontologies, run SQL queries, and more |
 | [freeagent-cli](plugins/freeagent-cli/) | Interact with FreeAgent accounting software (placeholder - coming soon) |
 
 ## Installation
 
-### Quick Install (Recommended)
-
-Use the install script to symlink skills to your Claude Code configuration:
+### Add the Marketplace
 
 ```bash
-# Clone this repository
-git clone https://github.com/anjor/claude-skills.git
-cd claude-skills
-
-# Install a specific skill
-./scripts/install.sh install pltr-cli
-
-# List available skills
-./scripts/install.sh list
-
-# Uninstall a skill
-./scripts/install.sh uninstall pltr-cli
+# Add this marketplace to Claude Code
+/plugin marketplace add anjor/claude-skills
 ```
 
-### Manual Installation
+### Install Plugins
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/anjor/claude-skills.git
-   ```
+```bash
+# Install specific plugins
+/plugin install pltr-cli@anjor-claude-skills
+/plugin install freeagent-cli@anjor-claude-skills
+```
 
-2. Symlink the desired skill to `~/.claude/skills/`:
-   ```bash
-   mkdir -p ~/.claude/skills
-   ln -s /path/to/claude-skills/plugins/pltr-cli ~/.claude/skills/pltr-cli
-   ```
+### Local Development
 
-3. Restart Claude Code to pick up the new skill.
+For local testing during development:
 
-## Skill Structure
+```bash
+# Add local marketplace
+/plugin marketplace add ./
 
-Each skill follows a standard structure:
+# Install plugin from local marketplace
+/plugin install pltr-cli@anjor-claude-skills
+```
+
+## Plugin Structure
+
+Each plugin follows this structure:
 
 ```
 plugins/<name>/
-├── SKILL.md          # Required: frontmatter + skill definition
-├── reference/        # Optional: detailed command/API references
-└── workflows/        # Optional: multi-step task patterns
+├── .claude-plugin/
+│   └── plugin.json    # Plugin manifest with metadata
+└── skills/
+    └── <skill-name>/
+        ├── SKILL.md       # Required: frontmatter + skill definition
+        ├── reference/     # Optional: detailed command/API references
+        └── workflows/     # Optional: multi-step task patterns
 ```
 
 ### SKILL.md Format
@@ -69,9 +66,25 @@ description: A description that helps Claude understand when to use this skill. 
 # Skill content follows...
 ```
 
+### plugin.json Format
+
+Each plugin requires a `.claude-plugin/plugin.json` manifest:
+
+```json
+{
+  "name": "plugin-name",
+  "description": "Plugin description",
+  "version": "1.0.0",
+  "author": {
+    "name": "Author Name"
+  },
+  "repository": "https://github.com/user/repo"
+}
+```
+
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding new skills.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding new plugins.
 
 ## License
 
