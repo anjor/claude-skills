@@ -1,8 +1,14 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "freeagent-cli",
-  "description": "FreeAgent accounting CLI assistant",
+  "description": "FreeAgent accounting CLI assistant (placeholder - not yet usable)",
   "version": "0.1.0",
   "author": {
     "name": "Anjor Kanekar"
-  }
+  },
+  "homepage": "https://github.com/anjor/claude-skills/tree/main/plugins/freeagent-cli",
+  "repository": "https://github.com/anjor/claude-skills",
+  "license": "MIT",
+  "keywords": ["freeagent", "accounting", "invoices", "expenses", "cli"],
+  "defaultEnabled": false
 }
