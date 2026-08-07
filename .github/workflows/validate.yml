@@ -1,0 +1,34 @@
+name: Validate plugins
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Validate marketplace manifest
+        run: claude plugin validate . --strict
+
+      - name: Validate each plugin
+        run: |
+          rc=0
+          for manifest in plugins/*/.claude-plugin/plugin.json; do
+            plugin="$(dirname "$(dirname "$manifest")")"
+            echo "::group::${plugin}"
+            claude plugin validate "./${plugin}" --strict || rc=1
+            echo "::endgroup::"
+          done
+          exit $rc
