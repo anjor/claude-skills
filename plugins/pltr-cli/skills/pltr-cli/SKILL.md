@@ -1,6 +1,10 @@
 ---
 name: pltr-cli
-description: Helps you work with Palantir Foundry using the pltr CLI. Use this when you need to query datasets, manage orchestration builds, work with ontologies, run SQL queries, manage folders/spaces/projects, copy datasets, or perform admin operations in Foundry. Triggers: Foundry, pltr, dataset, SQL query, ontology, build, schedule, RID.
+description: "Use when working with Palantir Foundry from the command line - querying or copying datasets, running SQL queries, browsing ontologies, objects and actions, managing orchestration builds, jobs and schedules, administering users, groups and roles, or organizing folders, spaces and projects. Also use when the user mentions Foundry, pltr, a Foundry RID, streams, mediasets, or AIP agents."
+license: MIT
+compatibility: "Requires the pltr CLI (pltr-cli 0.12.0+ on Python 3.9-3.12) and configured Foundry credentials"
+metadata:
+  version: "1.1.0"
 ---
 
 # pltr-cli: Palantir Foundry CLI

@@ -1,11 +1,22 @@
 ---
 name: freeagent-cli
-description: Helps you work with FreeAgent accounting software using the freeagent CLI. Use this when you need to manage invoices, expenses, contacts, projects, timeslips, bank transactions, or generate financial reports. Triggers: FreeAgent, invoice, expense, accounting, timeslip, bank transaction.
+description: "Placeholder skill for the FreeAgent accounting CLI - invoices, expenses, contacts, projects, timeslips, bank transactions and financial reports. Not yet usable: the commands below are a sketch, not verified against a real CLI."
+license: MIT
+compatibility: "Work in progress - no working freeagent CLI is documented yet"
+disable-model-invocation: true
+metadata:
+  version: "0.1.0"
+  status: "placeholder"
 ---
 
 # freeagent-cli: FreeAgent Accounting CLI
 
-This skill helps you use the freeagent-cli to interact with FreeAgent accounting software.
+> **Status: placeholder.** The commands, flags and reference files below are a
+> sketch of an intended CLI. None of them have been verified to exist. Do not
+> run them or present them to the user as real. `disable-model-invocation: true`
+> keeps this skill out of automatic selection until it documents a real tool.
+
+This skill will help you use the freeagent-cli to interact with FreeAgent accounting software.
 
 ## Compatibility
 
