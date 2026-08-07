@@ -17,24 +17,36 @@ Every plugin requires a `.claude-plugin/plugin.json` manifest:
 
 ```json
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "your-plugin-name",
   "description": "A clear description of what this plugin does",
   "version": "1.0.0",
   "author": {
     "name": "Your Name"
   },
-  "repository": "https://github.com/your-username/your-repo"
+  "repository": "https://github.com/your-username/your-repo",
+  "license": "MIT",
+  "keywords": ["cli-name", "domain-keyword"]
 }
 ```
 
+`name` is the only required field; the rest improve discovery and validation.
+
 ### 3. Create SKILL.md
 
-Create `skills/your-skill-name/SKILL.md` with YAML frontmatter:
+Create `skills/your-skill-name/SKILL.md` with YAML frontmatter. Skills follow
+the [Agent Skills spec](https://agentskills.io/specification), which defines six
+fields: `name` and `description` (required), plus `license`, `compatibility`,
+`metadata`, and `allowed-tools`.
 
 ```yaml
 ---
 name: your-skill-name
-description: A clear description of what this skill does. Include trigger words that help Claude recognize when to use it. Example triggers: "cli-name", "tool-name", relevant domain keywords.
+description: "Use when working with <tool> - <the tasks it covers>. Also use when the user mentions <trigger words>."
+license: MIT
+compatibility: "Requires <cli> vX.Y+ and configured credentials"
+metadata:
+  version: "1.0.0"
 ---
 
 # Your Skill Name
@@ -131,11 +143,25 @@ Categories include: `development`, `productivity`, `utilities`, etc.
 
 ### SKILL.md Frontmatter
 
-- **name**: Should match the skill directory name
-- **description**: Include:
-  - What the skill helps with
-  - Key capabilities
-  - Trigger words/phrases that should activate the skill
+- **name**: Must match the skill directory name. Lowercase letters, numbers and
+  single hyphens only, 1-64 characters, no leading or trailing hyphen.
+- **description**: Max 1024 characters. This is the only part of the skill
+  Claude sees before deciding to load it, so write it as triggering conditions:
+  start with "Use when...", write in the third person, and name the tasks,
+  symptoms and keywords that should pull the skill in. Don't summarize the
+  skill's internal workflow - Claude will follow the summary instead of reading
+  the body.
+- **Quote descriptions containing `: `**. A bare colon-space terminates a YAML
+  plain scalar, so `description: Does X. Triggers: foo` fails to parse and the
+  skill loads with *no* metadata at all - silently invisible to Claude. Wrap the
+  value in double quotes.
+- **compatibility / license / metadata**: optional spec fields for version and
+  dependency requirements. Prefer these over prose in the body.
+
+Fields outside the spec's six (`disable-model-invocation`, `argument-hint`,
+`context`, `arguments`, `disallowed-tools`) are Claude Code extensions. They work
+in plugin skills but are rejected when the same skill is uploaded to claude.ai or
+the Skills API, so avoid them if the skill needs to be portable.
 
 ### Content
 
@@ -159,22 +185,29 @@ Categories include: `development`, `productivity`, `utilities`, etc.
 
 ## Testing Your Plugin
 
-1. Add the local marketplace:
+1. Validate the manifests and frontmatter first - this catches the YAML
+   parse errors that otherwise fail silently at runtime:
+   ```bash
+   claude plugin validate ./plugins/your-plugin-name --strict
+   claude plugin validate . --strict   # the marketplace manifest
+   ```
+
+2. Add the local marketplace:
    ```bash
    /plugin marketplace add ./
    ```
 
-2. Install your plugin:
+3. Install your plugin:
    ```bash
    /plugin install your-plugin-name@anjor-claude-skills
    ```
 
-3. Test with trigger phrases:
+4. Test with trigger phrases:
    ```
    help me with your-skill-name
    ```
 
-4. Verify Claude loads the appropriate reference/workflow files
+5. Verify Claude loads the appropriate reference/workflow files
 
 ## Submitting Changes
 

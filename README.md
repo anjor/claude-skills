@@ -55,31 +55,52 @@ plugins/<name>/
 
 ### SKILL.md Format
 
-The `SKILL.md` file must include YAML frontmatter:
+Skills follow the [Agent Skills spec](https://agentskills.io/specification).
+`SKILL.md` must start with YAML frontmatter:
 
 ```yaml
 ---
 name: skill-name
-description: A description that helps Claude understand when to use this skill. Include trigger words.
+description: "Use when <triggering conditions> - <tasks covered>. Also use when the user mentions <keywords>."
+license: MIT
+compatibility: "Requires <cli> vX.Y+"
+metadata:
+  version: "1.0.0"
 ---
 
 # Skill content follows...
 ```
 
+Quote any description containing `: ` — an unquoted colon-space breaks YAML
+parsing and the skill loads with no metadata at all. Keep `SKILL.md` under 500
+lines and push detail into `reference/` and `workflows/`, which load only when
+needed.
+
 ### plugin.json Format
 
-Each plugin requires a `.claude-plugin/plugin.json` manifest:
+Each plugin has a `.claude-plugin/plugin.json` manifest (`name` is the only
+required field):
 
 ```json
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "plugin-name",
   "description": "Plugin description",
   "version": "1.0.0",
   "author": {
     "name": "Author Name"
   },
-  "repository": "https://github.com/user/repo"
+  "repository": "https://github.com/user/repo",
+  "license": "MIT",
+  "keywords": ["keyword"]
 }
+```
+
+### Validating
+
+```bash
+claude plugin validate ./plugins/<name> --strict   # manifest + skill frontmatter
+claude plugin validate . --strict                  # marketplace manifest
 ```
 
 ## Contributing
