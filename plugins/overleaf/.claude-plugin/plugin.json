@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "overleaf",
+  "description": "Overleaf LaTeX project assistant - edit papers, fix compile errors, and manage bibliographies over the Git bridge",
+  "version": "1.0.0",
+  "author": {
+    "name": "Anjor Kanekar"
+  },
+  "homepage": "https://github.com/anjor/claude-skills/tree/main/plugins/overleaf",
+  "repository": "https://github.com/anjor/claude-skills",
+  "license": "MIT",
+  "keywords": ["overleaf", "latex", "tex", "bibtex", "git", "papers"]
+}
