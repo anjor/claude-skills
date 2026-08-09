@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "anjor-claude-skills",
-  "description": "Claude Code skills for CLI tools including Palantir Foundry",
+  "description": "Claude Code skills for CLI tools including Palantir Foundry and Overleaf",
   "owner": {
     "name": "Anjor Kanekar",
     "url": "https://github.com/anjor"
@@ -14,6 +14,14 @@
       "version": "1.1.0",
       "category": "development",
       "keywords": ["palantir", "foundry", "cli", "datasets", "sql", "ontology"]
+    },
+    {
+      "name": "overleaf",
+      "source": "./plugins/overleaf",
+      "description": "Overleaf LaTeX project assistant - edit papers, fix compile errors, and manage bibliographies over the Git bridge",
+      "version": "1.0.0",
+      "category": "productivity",
+      "keywords": ["overleaf", "latex", "tex", "bibtex", "git", "papers"]
     },
     {
       "name": "freeagent-cli",
