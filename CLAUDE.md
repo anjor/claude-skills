@@ -39,6 +39,7 @@ claude-skills/
 ### Current Plugins
 
 - **pltr-cli**: Comprehensive Palantir Foundry CLI documentation (production-ready)
+- **overleaf**: Overleaf LaTeX projects over the Git bridge - editing, local builds, bibliographies (production-ready)
 - **freeagent-cli**: FreeAgent accounting CLI (template/WIP)
 
 ## Contributing New Plugins

@@ -7,6 +7,7 @@ A personal collection of Claude Code plugins that can be installed and used with
 | Plugin | Description |
 |--------|-------------|
 | [pltr-cli](plugins/pltr-cli/) | Work with Palantir Foundry using the pltr CLI - query datasets, manage orchestration builds, work with ontologies, run SQL queries, and more |
+| [overleaf](plugins/overleaf/) | Work on Overleaf LaTeX projects over the Git bridge - edit paper prose, compile and fix build errors locally, manage `.bib` files and citations |
 | [freeagent-cli](plugins/freeagent-cli/) | Interact with FreeAgent accounting software (placeholder - coming soon) |
 
 ## Installation
@@ -23,6 +24,7 @@ A personal collection of Claude Code plugins that can be installed and used with
 ```bash
 # Install specific plugins
 /plugin install pltr-cli@anjor-claude-skills
+/plugin install overleaf@anjor-claude-skills
 /plugin install freeagent-cli@anjor-claude-skills
 ```
 
