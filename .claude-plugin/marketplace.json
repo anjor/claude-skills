@@ -24,6 +24,14 @@
       "keywords": ["overleaf", "latex", "tex", "bibtex", "git", "papers"]
     },
     {
+      "name": "anjor",
+      "source": "./plugins/anjor",
+      "description": "anjor-mode - Anjor's working conventions for agents: autonomy, delegation, verification, code, prose, and process",
+      "version": "0.1.0",
+      "category": "productivity",
+      "keywords": ["working-style", "conventions", "agents", "mode"]
+    },
+    {
       "name": "freeagent-cli",
       "source": "./plugins/freeagent-cli",
       "description": "FreeAgent accounting CLI assistant (placeholder - commands are unverified)",
