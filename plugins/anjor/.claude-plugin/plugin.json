@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "anjor",
+  "description": "anjor-mode - Anjor's working conventions for agents: autonomy, delegation, verification, code, prose, and process",
+  "version": "0.1.0",
+  "author": {
+    "name": "Anjor Kanekar"
+  },
+  "homepage": "https://github.com/anjor/claude-skills/tree/main/plugins/anjor",
+  "repository": "https://github.com/anjor/claude-skills",
+  "license": "MIT",
+  "keywords": ["working-style", "conventions", "agents", "mode"]
+}

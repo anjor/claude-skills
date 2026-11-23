@@ -40,6 +40,7 @@ claude-skills/
 
 - **pltr-cli**: Comprehensive Palantir Foundry CLI documentation (production-ready)
 - **overleaf**: Overleaf LaTeX projects over the Git bridge - editing, local builds, bibliographies (production-ready)
+- **anjor**: `anjor-mode`, Anjor's working conventions for agents (opt-in via `/anjor:anjor-mode`)
 - **freeagent-cli**: FreeAgent accounting CLI (template/WIP)
 
 ## Contributing New Plugins
